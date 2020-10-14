@@ -5,14 +5,24 @@ import 'package:flutter/material.dart';
 // }
 
 // YT: Checkpoints
-// 
+//
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  var questionIndex = 0;
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
   void answerQuestion() {
-    questionIndex = questionIndex + 1;
-    //print("Answer chosen has been recorded.");
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+    });
+    //print("_questionIndex:"+String(_questionIndex));
   }
 
   Widget build(BuildContext context) {
@@ -30,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[questionIndex]),
+            Text(questions[_questionIndex]),
             RaisedButton(child: Text('Answer 1:'), onPressed: answerQuestion),
             RaisedButton(child: Text('Answer 2:'), onPressed: answerQuestion),
             RaisedButton(
