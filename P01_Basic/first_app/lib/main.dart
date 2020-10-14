@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
+import 'question.dart';
 
-// YT: Checkpoints
-//
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+    
     return _MyAppState();
   }
 }
@@ -40,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[_questionIndex]),
+            Question(questions[_questionIndex]),
             RaisedButton(child: Text('Answer 1:'), onPressed: answerQuestion),
             RaisedButton(child: Text('Answer 2:'), onPressed: answerQuestion),
             RaisedButton(
