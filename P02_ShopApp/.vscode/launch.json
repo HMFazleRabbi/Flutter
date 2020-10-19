@@ -4,16 +4,9 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "name": "shopapp",
-            "type": "dart",
-            "request": "launch",
-            "cwd": "shop_app"
-        },
-        {
-            "name": "first_app",
-            "cwd": "first_app",
+            "cwd": "shopapp",
             "request": "launch",
             "type": "dart"
         }

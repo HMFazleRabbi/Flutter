@@ -20,22 +20,22 @@ class _MyAppState extends State<MyApp> {
       'question': 'What\s your mother\'s maiden name?',
       'answer': [
         {'name': 'Smith', 'score': 1},
-        {'name': 'Backer', 'score': 2}
+        {'name': 'Backer', 'score': 3}
       ]
     },
     {
       'question': 'What\s your pet name?',
       'answer': [
-        {'name': 'Cat', 'score': 4},
-        {'name': 'Dog', 'score': 3},
-        {'name': 'Mouse', 'score': 5}
+        {'name': 'Cat', 'score': 5},
+        {'name': 'Dog', 'score': 2},
+        {'name': 'Mouse', 'score': 8}
       ],
     },
     {
       'question': 'What\s your first car?',
       'answer': [
         {'name': 'Motorola', 'score': 6},
-        {'name': 'Toyota', 'score': 7},
+        {'name': 'Toyota', 'score': 1},
         {'name': 'Myvi', 'score': 9}
       ],
     }
