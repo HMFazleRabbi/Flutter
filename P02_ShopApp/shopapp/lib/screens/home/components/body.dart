@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp/constants.dart';
+import 'package:shopapp/models/Product.dart';
+import 'package:shopapp/screens/home/components/categories.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -8,62 +10,42 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: Column(
         children: <Widget>[
-          Text("data",
+          Text("Shopee",
               style: Theme.of(context)
                   .textTheme
                   .headline5
                   .copyWith(fontWeight: FontWeight.bold)),
           Categories(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(kDefaultPadding),
+                height: 180,
+                width: 160,
+                decoration: BoxDecoration(
+                    color: products[0].color,
+                    borderRadius: BorderRadius.circular(16)),
+                child: Image.asset(products[0].image),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: kDefaultPadding/4),
+                child: Text(
+                  products[0].title,
+                  style: TextStyle(
+                    color: kTextLightColor,
+                  ),
+                ),
+              ),
+              Text(
+                "\$ " + products[0].price.toString(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          )
         ],
-      ),
-    );
-  }
-}
-
-class Categories extends StatefulWidget {
-  @override
-  _CategoriesState createState() => _CategoriesState();
-}
-
-class _CategoriesState extends State<Categories> {
-  final List<String> categories = ['Bag', 'Glasses', 'Footwear', 'Jewellery',' Wedding Dress'];
-  int selected_category;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        height: 25,
-        child: ListView.builder(
-          itemCount: categories.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => buildCategory(index),
-        ));
-  }
-
-  Widget buildCategory(int index) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selected_category = index;
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(categories[index],
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: kTextColor)),
-            Container(
-                margin: EdgeInsets.only(top: kDefaultPadding / 4),
-                height: 2,
-                width: 30,
-                color: selected_category == index
-                    ? Colors.black
-                    : Colors.transparent)
-          ],
-        ),
       ),
     );
   }
