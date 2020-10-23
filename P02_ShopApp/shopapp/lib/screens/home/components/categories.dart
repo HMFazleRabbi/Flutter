@@ -8,6 +8,7 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
   final List<String> categories = ['Bag', 'Glasses', 'Footwear', 'Jewellery',' Wedding Dress'];
+  // ignore: non_constant_identifier_names
   int selected_category;
 
   @override
