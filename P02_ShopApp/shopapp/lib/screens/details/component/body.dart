@@ -3,6 +3,8 @@ import 'package:shopapp/constants.dart';
 import 'package:shopapp/models/Product.dart';
 import 'package:shopapp/screens/details/component/product_title_with_image.dart';
 
+import 'color_and_size.dart';
+
 class Body extends StatelessWidget {
   final Product product;
 
@@ -18,7 +20,7 @@ class Body extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  margin: EdgeInsets.only(top: size.height * 0.35),
                   padding: EdgeInsets.only(
                       top: size.height * 0.12,
                       left: kDefaultPadding,
@@ -32,16 +34,7 @@ class Body extends StatelessWidget {
                   ),
                   child: Column(
                     children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Text("Color"),
-                              ColorDot()
-                            ],
-                          )
-                        ],
-                      )
+                      ColorAndSize(product: product)
                     ],
                   ),
                 ),
@@ -50,37 +43,6 @@ class Body extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class ColorDot extends StatelessWidget {
-  const ColorDot({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(
-        top: kDefaultPadding / 4,
-        right: kDefaultPadding / 2,
-      ),
-      padding: EdgeInsets.all(2.5),
-      height: 24,
-      width: 24,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: Color(0xFF356C95),
-        ),
-      ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: Color(0xFF356C95),
-          shape: BoxShape.circle,
-        ),
       ),
     );
   }
