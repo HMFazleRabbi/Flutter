@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopapp/constants.dart';
 import 'package:shopapp/models/Product.dart';
 import 'package:shopapp/screens/details/component/product_title_with_image.dart';
 
-import 'cart_counter.dart';
+import 'add_to_cart.dart';
 import 'color_and_size.dart';
 import 'counter_with_fav_btn.dart';
 import 'description.dart';
@@ -39,48 +38,12 @@ class Body extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       ColorAndSize(product: product),
+                      SizedBox(height: kDefaultPadding/2),
                       Description(product: product),
+                      SizedBox(height: kDefaultPadding/2),
                       CounterWithFavBtn(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
-                        child: Row(
-                          
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(right: kDefaultPadding),
-                              height: 50,
-                              width: 59,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(18),
-                                  border: Border.all(
-                                    color: product.color,
-                                  )),
-                              child: IconButton(
-                                  icon: SvgPicture.asset(
-                                      'assets/icons/add_to_cart.svg', color: product.color,),
-                                  onPressed: () {}),
-                            ),
-                            Expanded(
-                              child: SizedBox(
-                                height: 50,
-                                child: FlatButton(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-                                  color: product.color,
-                                  child: Text(
-                                    "Buy now".toUpperCase(),
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
+                      SizedBox(height: kDefaultPadding/2),
+                      AddToCart(product: product)
                     ],
                   ),
                 ),
