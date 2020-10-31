@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shopapp/models/Product.dart';
 
@@ -27,8 +26,8 @@ class ColorAndSize extends StatelessWidget {
                     color: Color(0xFF356C95),
                     isSelected: true,
                   ),
-                  ColorDot(color: Color(0xFF356C95)),
-                  ColorDot(color: Color(0xFF356C95)),
+                  ColorDot(color: Color(0xFF55AC95)),
+                  ColorDot(color: Color(0xFF351C95)),
                 ],
               ),
             ],
@@ -41,13 +40,11 @@ class ColorAndSize extends StatelessWidget {
               children: <TextSpan>[
                 TextSpan(text: "Size\n"),
                 TextSpan(
-                    text: "${product.size}cm",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        .copyWith(
-                          fontWeight: FontWeight.bold,
-                        ))
+                  text: "${product.size}cm",
+                  style: Theme.of(context).textTheme.headline5.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
               ],
             ),
           ),
