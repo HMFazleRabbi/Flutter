@@ -1,3 +1,3 @@
 ### Disclosure
 
-I, the owner of this repo, did not but this content myself. The idea and the design come from the owner of this youtube video. I merely used it to learn Flutter.
+I, the owner of this repo, am not the owner of the content in this directory and its child directories myself. The credit goes to the owner of [this](https://youtu.be/XBKzpTz65Io). youtube video. I merely used it for educational purpose.
