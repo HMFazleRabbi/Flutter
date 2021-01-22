@@ -60,15 +60,11 @@ Content
 <li>Wrap Up 05:42:28</li>
 </ol>
 
-####  P01_Basic
+####  P02_Shopapp
+Source: Online Shop App - Flutter UI - Speed Code (https://www.youtube.com/watch?v=XBKzpTz65Io&t=8s)
 
-A shopping app project front end.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
+A shopping app project front end. This project is a starting point for a Flutter application. A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
