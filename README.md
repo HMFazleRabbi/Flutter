@@ -2,7 +2,7 @@
 
 Workspace for flutter projects version control.
 
-### P01_Basic
+#### P01_Basic
 
 Basic introductory project from *Flutter Crash Course for Beginners 2020 - Build a Flutter App with Google's Flutter & Dart* (https://www.youtube.com/watch?v=x0uinJvhNxI&list=PLln6S88gxRMF1vmwnni2P5B4A8Vb-ll1b&index=6&t=10287s)
 
@@ -59,3 +59,21 @@ Content
 <li>Resetting the Quiz 05:37:34</li>
 <li>Wrap Up 05:42:28</li>
 </ol>
+
+####  P01_Basic
+
+A shopping app project front end.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+
