@@ -13,7 +13,7 @@ Either<ValueFailure<String>, String>  validateEmailAddress(String value) {
 }
 
 Either<ValueFailure<String>, String> validatePassword(String input) {
-  // Exactly 8 Character Password with lowercase, uppercase letters, numbers and at least one lowercase letter, one uppercase letter and one number
+  // Morethan 8 Character Password with lowercase, uppercase letters, numbers and at least one lowercase letter, one uppercase letter and one number
   // https://techearl.com/regular-expressions/regex-password-strength-validation
   Pattern pattern =
     r'^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])[a-zA-Z0-9]{8,}$';
@@ -22,4 +22,46 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return right(input);
   else
     return left(ValueFailure.invalidPassword(failedValue: input));
+}
+
+Either<ValueFailure<String>, String> validateUsername(String input) {
+  // Morethan  3 Character Password with lowercase, uppercase letters and numbers
+  // https://techearl.com/regular-expressions/regex-password-strength-validation
+  Pattern pattern =
+    r'^[a-zA-Z0-9]{3,}$';
+  RegExp regex = new RegExp(pattern);
+  if (regex.hasMatch(input))
+    return right(input);
+  else
+    return left(ValueFailure.invalidUsername(failedValue: input));
+}
+Either<ValueFailure<String>, String> validateCountryName(String input) {
+  if (input != "")
+    return right(input);
+  else
+    return left(ValueFailure.invalidUsername(failedValue: input));
+}
+
+Either<ValueFailure<String>, String> validateFirstName(String input) {
+  // Morethan  3 Character Password with lowercase, uppercase letters and numbers
+  // https://techearl.com/regular-expressions/regex-password-strength-validation
+  Pattern pattern =
+    r'^[a-zA-Z. ]{1,}$';
+  RegExp regex = new RegExp(pattern);
+  if (regex.hasMatch(input))
+    return right(input);
+  else
+    return left(ValueFailure.invalidFirstName(failedValue: input));
+}
+
+Either<ValueFailure<String>, String> validateLastName(String input) {
+  // Morethan  3 Character Password with lowercase, uppercase letters and numbers
+  // https://techearl.com/regular-expressions/regex-password-strength-validation
+  Pattern pattern =
+    r'^[a-zA-Z. ]{1,}$';
+  RegExp regex = new RegExp(pattern);
+  if (regex.hasMatch(input))
+    return right(input);
+  else
+    return left(ValueFailure.invalidLastName(failedValue: input));
 }

@@ -26,6 +26,27 @@ class _$ValueFailureTearOff {
       failedValue: failedValue,
     );
   }
+
+// ignore: unused_element
+  InvalidUsername<T> invalidUsername<T>({@required T failedValue}) {
+    return InvalidUsername<T>(
+      failedValue: failedValue,
+    );
+  }
+
+// ignore: unused_element
+  InvalidUsername<T> invalidFirstName<T>({@required T failedValue}) {
+    return InvalidUsername<T>(
+      failedValue: failedValue,
+    );
+  }
+
+// ignore: unused_element
+  InvalidUsername<T> invalidLastName<T>({@required T failedValue}) {
+    return InvalidUsername<T>(
+      failedValue: failedValue,
+    );
+  }
 }
 
 /// @nodoc
@@ -40,22 +61,34 @@ mixin _$ValueFailure<T> {
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult invalidPassword(T failedValue),
+    @required TResult invalidUsername(T failedValue),
+    @required TResult invalidFirstName(T failedValue),
+    @required TResult invalidLastName(T failedValue),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult invalidPassword(T failedValue),
+    TResult invalidUsername(T failedValue),
+    TResult invalidFirstName(T failedValue),
+    TResult invalidLastName(T failedValue),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult invalidPassword(InvalidPassword<T> value),
+    @required TResult invalidUsername(InvalidUsername<T> value),
+    @required TResult invalidFirstName(InvalidUsername<T> value),
+    @required TResult invalidLastName(InvalidUsername<T> value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult invalidPassword(InvalidPassword<T> value),
+    TResult invalidUsername(InvalidUsername<T> value),
+    TResult invalidFirstName(InvalidUsername<T> value),
+    TResult invalidLastName(InvalidUsername<T> value),
     @required TResult orElse(),
   });
 
@@ -169,9 +202,15 @@ class _$InvalidEmail<T>
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult invalidPassword(T failedValue),
+    @required TResult invalidUsername(T failedValue),
+    @required TResult invalidFirstName(T failedValue),
+    @required TResult invalidLastName(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
     return invalidEmail(failedValue);
   }
 
@@ -180,6 +219,9 @@ class _$InvalidEmail<T>
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult invalidPassword(T failedValue),
+    TResult invalidUsername(T failedValue),
+    TResult invalidFirstName(T failedValue),
+    TResult invalidLastName(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -194,9 +236,15 @@ class _$InvalidEmail<T>
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult invalidPassword(InvalidPassword<T> value),
+    @required TResult invalidUsername(InvalidUsername<T> value),
+    @required TResult invalidFirstName(InvalidUsername<T> value),
+    @required TResult invalidLastName(InvalidUsername<T> value),
   }) {
     assert(invalidEmail != null);
     assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
     return invalidEmail(this);
   }
 
@@ -205,6 +253,9 @@ class _$InvalidEmail<T>
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult invalidPassword(InvalidPassword<T> value),
+    TResult invalidUsername(InvalidUsername<T> value),
+    TResult invalidFirstName(InvalidUsername<T> value),
+    TResult invalidLastName(InvalidUsername<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -303,9 +354,15 @@ class _$InvalidPassword<T>
   TResult when<TResult extends Object>({
     @required TResult invalidEmail(T failedValue),
     @required TResult invalidPassword(T failedValue),
+    @required TResult invalidUsername(T failedValue),
+    @required TResult invalidFirstName(T failedValue),
+    @required TResult invalidLastName(T failedValue),
   }) {
     assert(invalidEmail != null);
     assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
     return invalidPassword(failedValue);
   }
 
@@ -314,6 +371,9 @@ class _$InvalidPassword<T>
   TResult maybeWhen<TResult extends Object>({
     TResult invalidEmail(T failedValue),
     TResult invalidPassword(T failedValue),
+    TResult invalidUsername(T failedValue),
+    TResult invalidFirstName(T failedValue),
+    TResult invalidLastName(T failedValue),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -328,9 +388,15 @@ class _$InvalidPassword<T>
   TResult map<TResult extends Object>({
     @required TResult invalidEmail(InvalidEmail<T> value),
     @required TResult invalidPassword(InvalidPassword<T> value),
+    @required TResult invalidUsername(InvalidUsername<T> value),
+    @required TResult invalidFirstName(InvalidUsername<T> value),
+    @required TResult invalidLastName(InvalidUsername<T> value),
   }) {
     assert(invalidEmail != null);
     assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
     return invalidPassword(this);
   }
 
@@ -339,6 +405,9 @@ class _$InvalidPassword<T>
   TResult maybeMap<TResult extends Object>({
     TResult invalidEmail(InvalidEmail<T> value),
     TResult invalidPassword(InvalidPassword<T> value),
+    TResult invalidUsername(InvalidUsername<T> value),
+    TResult invalidFirstName(InvalidUsername<T> value),
+    TResult invalidLastName(InvalidUsername<T> value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -358,4 +427,463 @@ abstract class InvalidPassword<T> implements ValueFailure<T> {
   @override
   @JsonKey(ignore: true)
   $InvalidPasswordCopyWith<T, InvalidPassword<T>> get copyWith;
+}
+
+/// @nodoc
+abstract class $InvalidUsernameCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $InvalidUsernameCopyWith(
+          InvalidUsername<T> value, $Res Function(InvalidUsername<T>) then) =
+      _$InvalidUsernameCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$InvalidUsernameCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidUsernameCopyWith<T, $Res> {
+  _$InvalidUsernameCopyWithImpl(
+      InvalidUsername<T> _value, $Res Function(InvalidUsername<T>) _then)
+      : super(_value, (v) => _then(v as InvalidUsername<T>));
+
+  @override
+  InvalidUsername<T> get _value => super._value as InvalidUsername<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(InvalidUsername<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+/// @nodoc
+class _$InvalidUsername<T>
+    with DiagnosticableTreeMixin
+    implements InvalidUsername<T> {
+  const _$InvalidUsername({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.invalidUsername(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.invalidUsername'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidUsername<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith =>
+      _$InvalidUsernameCopyWithImpl<T, InvalidUsername<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult invalidEmail(T failedValue),
+    @required TResult invalidPassword(T failedValue),
+    @required TResult invalidUsername(T failedValue),
+    @required TResult invalidFirstName(T failedValue),
+    @required TResult invalidLastName(T failedValue),
+  }) {
+    assert(invalidEmail != null);
+    assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
+    return invalidUsername(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidEmail(T failedValue),
+    TResult invalidPassword(T failedValue),
+    TResult invalidUsername(T failedValue),
+    TResult invalidFirstName(T failedValue),
+    TResult invalidLastName(T failedValue),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidUsername != null) {
+      return invalidUsername(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult invalidEmail(InvalidEmail<T> value),
+    @required TResult invalidPassword(InvalidPassword<T> value),
+    @required TResult invalidUsername(InvalidUsername<T> value),
+    @required TResult invalidFirstName(InvalidUsername<T> value),
+    @required TResult invalidLastName(InvalidUsername<T> value),
+  }) {
+    assert(invalidEmail != null);
+    assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
+    return invalidUsername(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidEmail(InvalidEmail<T> value),
+    TResult invalidPassword(InvalidPassword<T> value),
+    TResult invalidUsername(InvalidUsername<T> value),
+    TResult invalidFirstName(InvalidUsername<T> value),
+    TResult invalidLastName(InvalidUsername<T> value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidUsername != null) {
+      return invalidUsername(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidUsername<T> implements ValueFailure<T> {
+  const factory InvalidUsername({@required T failedValue}) =
+      _$InvalidUsername<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith;
+}
+
+/// @nodoc
+abstract class $InvalidUsernameCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $InvalidUsernameCopyWith(
+          InvalidUsername<T> value, $Res Function(InvalidUsername<T>) then) =
+      _$InvalidUsernameCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$InvalidUsernameCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidUsernameCopyWith<T, $Res> {
+  _$InvalidUsernameCopyWithImpl(
+      InvalidUsername<T> _value, $Res Function(InvalidUsername<T>) _then)
+      : super(_value, (v) => _then(v as InvalidUsername<T>));
+
+  @override
+  InvalidUsername<T> get _value => super._value as InvalidUsername<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(InvalidUsername<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+/// @nodoc
+class _$InvalidUsername<T>
+    with DiagnosticableTreeMixin
+    implements InvalidUsername<T> {
+  const _$InvalidUsername({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.invalidFirstName(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.invalidFirstName'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidUsername<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith =>
+      _$InvalidUsernameCopyWithImpl<T, InvalidUsername<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult invalidEmail(T failedValue),
+    @required TResult invalidPassword(T failedValue),
+    @required TResult invalidUsername(T failedValue),
+    @required TResult invalidFirstName(T failedValue),
+    @required TResult invalidLastName(T failedValue),
+  }) {
+    assert(invalidEmail != null);
+    assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
+    return invalidFirstName(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidEmail(T failedValue),
+    TResult invalidPassword(T failedValue),
+    TResult invalidUsername(T failedValue),
+    TResult invalidFirstName(T failedValue),
+    TResult invalidLastName(T failedValue),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidFirstName != null) {
+      return invalidFirstName(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult invalidEmail(InvalidEmail<T> value),
+    @required TResult invalidPassword(InvalidPassword<T> value),
+    @required TResult invalidUsername(InvalidUsername<T> value),
+    @required TResult invalidFirstName(InvalidUsername<T> value),
+    @required TResult invalidLastName(InvalidUsername<T> value),
+  }) {
+    assert(invalidEmail != null);
+    assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
+    return invalidFirstName(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidEmail(InvalidEmail<T> value),
+    TResult invalidPassword(InvalidPassword<T> value),
+    TResult invalidUsername(InvalidUsername<T> value),
+    TResult invalidFirstName(InvalidUsername<T> value),
+    TResult invalidLastName(InvalidUsername<T> value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidFirstName != null) {
+      return invalidFirstName(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidUsername<T> implements ValueFailure<T> {
+  const factory InvalidUsername({@required T failedValue}) =
+      _$InvalidUsername<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith;
+}
+
+/// @nodoc
+abstract class $InvalidUsernameCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $InvalidUsernameCopyWith(
+          InvalidUsername<T> value, $Res Function(InvalidUsername<T>) then) =
+      _$InvalidUsernameCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+/// @nodoc
+class _$InvalidUsernameCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidUsernameCopyWith<T, $Res> {
+  _$InvalidUsernameCopyWithImpl(
+      InvalidUsername<T> _value, $Res Function(InvalidUsername<T>) _then)
+      : super(_value, (v) => _then(v as InvalidUsername<T>));
+
+  @override
+  InvalidUsername<T> get _value => super._value as InvalidUsername<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(InvalidUsername<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+/// @nodoc
+class _$InvalidUsername<T>
+    with DiagnosticableTreeMixin
+    implements InvalidUsername<T> {
+  const _$InvalidUsername({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ValueFailure<$T>.invalidLastName(failedValue: $failedValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.invalidLastName'))
+      ..add(DiagnosticsProperty('failedValue', failedValue));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidUsername<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith =>
+      _$InvalidUsernameCopyWithImpl<T, InvalidUsername<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult invalidEmail(T failedValue),
+    @required TResult invalidPassword(T failedValue),
+    @required TResult invalidUsername(T failedValue),
+    @required TResult invalidFirstName(T failedValue),
+    @required TResult invalidLastName(T failedValue),
+  }) {
+    assert(invalidEmail != null);
+    assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
+    return invalidLastName(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult invalidEmail(T failedValue),
+    TResult invalidPassword(T failedValue),
+    TResult invalidUsername(T failedValue),
+    TResult invalidFirstName(T failedValue),
+    TResult invalidLastName(T failedValue),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidLastName != null) {
+      return invalidLastName(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult invalidEmail(InvalidEmail<T> value),
+    @required TResult invalidPassword(InvalidPassword<T> value),
+    @required TResult invalidUsername(InvalidUsername<T> value),
+    @required TResult invalidFirstName(InvalidUsername<T> value),
+    @required TResult invalidLastName(InvalidUsername<T> value),
+  }) {
+    assert(invalidEmail != null);
+    assert(invalidPassword != null);
+    assert(invalidUsername != null);
+    assert(invalidFirstName != null);
+    assert(invalidLastName != null);
+    return invalidLastName(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult invalidEmail(InvalidEmail<T> value),
+    TResult invalidPassword(InvalidPassword<T> value),
+    TResult invalidUsername(InvalidUsername<T> value),
+    TResult invalidFirstName(InvalidUsername<T> value),
+    TResult invalidLastName(InvalidUsername<T> value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidLastName != null) {
+      return invalidLastName(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidUsername<T> implements ValueFailure<T> {
+  const factory InvalidUsername({@required T failedValue}) =
+      _$InvalidUsername<T>;
+
+  @override
+  T get failedValue;
+  @override
+  @JsonKey(ignore: true)
+  $InvalidUsernameCopyWith<T, InvalidUsername<T>> get copyWith;
 }
