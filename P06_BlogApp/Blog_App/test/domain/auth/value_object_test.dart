@@ -65,4 +65,79 @@ void main() {
       expect(_password, "newPassword05");
     });
   });
+  
+  group('First Name', () {
+    test('should return failure when empty', () {
+      String val ='';
+      var _expectedFailedValue = ValueFailure.invalidFirstName(failedValue: val);
+      var _firstname = FirstName(val).value.fold((l) => l, (r) => r);
+      expect(_firstname, matcher.TypeMatcher<InvalidFirstName>());
+      expect(_firstname, _expectedFailedValue);
+    });
+
+    test('should return failure when there is special character', () {
+      String val ='Da@taA';
+      var _expectedFailedValue = ValueFailure.invalidFirstName(failedValue: val);
+      var _firstname = FirstName(val).value.fold((l) => l, (r) => r);
+      expect(_firstname, matcher.TypeMatcher<InvalidFirstName>());
+      expect(_firstname, _expectedFailedValue);
+    });
+    test('should return failure when no numbers in firstname', () {
+      String val = "Dav54";
+      var _expectedFailedValue = InvalidFirstName(failedValue: val);
+      var _firstname = FirstName(val).value.fold((l) => l, (r) => r);
+      expect(_firstname, matcher.TypeMatcher<InvalidFirstName>());
+      expect(_firstname, _expectedFailedValue);
+    });
+    test('should pass for . and space', () {
+      String val ='MA.MS C';
+      var _firstname = FirstName(val).value.fold((l) => l, (r) => r);
+      expect(_firstname, matcher.TypeMatcher<String>());
+      expect(_firstname, val);
+    });
+    test('should pass', () {
+      String val ='David';
+      var _firstname = FirstName(val).value.fold((l) => l, (r) => r);
+      expect(_firstname, matcher.TypeMatcher<String>());
+      expect(_firstname, val);
+    });
+  });
+
+  
+  group('Last Name', () {
+    test('should return failure when empty', () {
+      String val ='';
+      var _expectedFailedValue = ValueFailure.invalidLastName(failedValue: val);
+      var _lastname = LastName(val).value.fold((l) => l, (r) => r);
+      expect(_lastname, matcher.TypeMatcher<InvalidLastName>());
+      expect(_lastname, _expectedFailedValue);
+    });
+
+    test('should return failure when there is special character', () {
+      String val ='Da@taA';
+      var _expectedFailedValue = ValueFailure.invalidLastName(failedValue: val);
+      var _lastname = LastName(val).value.fold((l) => l, (r) => r);
+      expect(_lastname, matcher.TypeMatcher<InvalidLastName>());
+      expect(_lastname, _expectedFailedValue);
+    });
+    test('should return failure when no numbers in lastname', () {
+      String val = "Dav54";
+      var _expectedFailedValue = InvalidLastName(failedValue: val);
+      var _lastname = LastName(val).value.fold((l) => l, (r) => r);
+      expect(_lastname, matcher.TypeMatcher<InvalidLastName>());
+      expect(_lastname, _expectedFailedValue);
+    });
+    test('should pass for . and space', () {
+      String val ='MA.MS C';
+      var _lastname = LastName(val).value.fold((l) => l, (r) => r);
+      expect(_lastname, matcher.TypeMatcher<String>());
+      expect(_lastname, val);
+    });
+    test('should pass', () {
+      String val ='David';
+      var _lastname = LastName(val).value.fold((l) => l, (r) => r);
+      expect(_lastname, matcher.TypeMatcher<String>());
+      expect(_lastname, val);
+    });
+  });
 }

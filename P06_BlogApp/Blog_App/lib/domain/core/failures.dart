@@ -16,8 +16,14 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   }) = InvalidUsername<T>;
   const factory ValueFailure.invalidFirstName({
     @required T failedValue,
-  }) = InvalidUsername<T>;
+  }) = InvalidFirstName<T>;
   const factory ValueFailure.invalidLastName({
     @required T failedValue,
-  }) = InvalidUsername<T>;
+  }) = InvalidLastName<T>;
+  const factory ValueFailure.invalidDOB({
+    @required T failedValue,
+  }) = InvalidDOB<T>;
+  const factory ValueFailure.invalidCountryName({
+    @required T failedValue,
+  }) = InvalidCountryName<T>;
 }

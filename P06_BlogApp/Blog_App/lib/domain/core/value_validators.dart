@@ -39,14 +39,14 @@ Either<ValueFailure<String>, String> validateCountryName(String input) {
   if (input != "")
     return right(input);
   else
-    return left(ValueFailure.invalidUsername(failedValue: input));
+    return left(ValueFailure.invalidCountryName(failedValue: input));
 }
 
 Either<ValueFailure<String>, String> validateFirstName(String input) {
   // Morethan  3 Character Password with lowercase, uppercase letters and numbers
   // https://techearl.com/regular-expressions/regex-password-strength-validation
   Pattern pattern =
-    r'^[a-zA-Z. ]{1,}$';
+    r'^[a-zA-Z\. ]{1,}$';
   RegExp regex = new RegExp(pattern);
   if (regex.hasMatch(input))
     return right(input);
@@ -64,4 +64,16 @@ Either<ValueFailure<String>, String> validateLastName(String input) {
     return right(input);
   else
     return left(ValueFailure.invalidLastName(failedValue: input));
+}
+
+Either<ValueFailure<String>, String> validateDOB(String input) {
+  // Morethan  3 Character Password with lowercase, uppercase letters and numbers
+  // https://techearl.com/regular-expressions/regex-password-strength-validation
+  Pattern pattern =
+    r'^[0-9/]{8,10}$';
+  RegExp regex = new RegExp(pattern);
+  if (regex.hasMatch(input))
+    return right(input);
+  else
+    return left(ValueFailure.invalidDOB(failedValue: input));
 }

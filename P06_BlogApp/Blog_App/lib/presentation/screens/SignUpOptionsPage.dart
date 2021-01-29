@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
-class WelcomePage extends StatefulWidget {
+class SignUpOptionsPage extends StatefulWidget {
   @override
-  _WelcomePageState createState() => _WelcomePageState();
+  _SignUpOptionsPageState createState() => _SignUpOptionsPageState();
 }
 
-class _WelcomePageState extends State<WelcomePage>
+class _SignUpOptionsPageState extends State<SignUpOptionsPage>
     with TickerProviderStateMixin {
   AnimationController _controller1;
   Animation<Offset> animation1;
@@ -13,6 +14,9 @@ class _WelcomePageState extends State<WelcomePage>
   Animation<Offset> animation2;
   AnimationController _controller3;
   Animation<Offset> animation3;
+  final log = Logger(
+    printer: PrettyPrinter(),
+  );
 
   @override
   void initState() {
@@ -92,7 +96,7 @@ class _WelcomePageState extends State<WelcomePage>
             ),
             SizedBox(height: 75.0),
             Text(
-              "Sign In using ",
+              "Sign Up using ",
               textAlign: TextAlign.start,
               style: TextStyle(
                 fontSize: 14,
@@ -101,51 +105,73 @@ class _WelcomePageState extends State<WelcomePage>
               ),
             ),
             SizedBox(height: 15.0),
-            signInButton("assets/google.png", "Google", animation2, ()=> Navigator.of(context).pushNamed("/signupemail")),
+            signUpOptionButton("assets/google.png", "Google", animation2,
+                () => Navigator.of(context).pushNamed("/signupemail")),
             SizedBox(height: 25.0),
-            signInButton("assets/facebook.png", "Facebook", animation3, ()=>{}),
+            signUpOptionButton(
+                "assets/facebook.png", "Facebook", animation3, () => {}),
             SizedBox(height: 25.0),
-            signInButton("assets/email.png", "Email", animation2, ()=>{}),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Already have an account? "),
-                Text(
-                  "SignIn",
-                  style: TextStyle(color: Colors.grey[100]),
-                ),
-              ],
-            )
+            signUpOptionButton(
+                "assets/email.png", "Email", animation2, () => {}),
+            SizedBox(height: 170.0),
+            signInButton(),
+            SizedBox(height: 2),
           ],
         ),
       ),
     );
   }
-}
 
-Widget signInButton(
-    String path, String text, Animation<Offset> animationController, Function f) {
-  return SlideTransition(
-    position: animationController,
-    child: Container(
-      width: 300,
-      child: ElevatedButton(
-        style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.green[200]),
-            padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-            textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))),
-        child: Row(
-          children: [
-            Image.asset(path, width: 40, height: 40),
-            SizedBox(
-              width: 30,
-            ),
-            Text(text),
-          ],
+
+//////////////////////////////////////////////
+  ///Widget
+//////////////////////////////////////////////
+
+  Row signInButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Already have an account? ",
         ),
-        onPressed: f,
+        RaisedButton(
+          color: Colors.black,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+              side: BorderSide(color: Colors.black45)),
+          onPressed: () => Navigator.of(context).pushNamed("/signin"),
+          child: Text(
+            "SignIn",
+            style: TextStyle(color: Colors.grey[100]),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget signUpOptionButton(String path, String text,
+      Animation<Offset> animationController, Function f) {
+    return SlideTransition(
+      position: animationController,
+      child: Container(
+        width: 300,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.green[200]),
+              padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+              textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))),
+          child: Row(
+            children: [
+              Image.asset(path, width: 40, height: 40),
+              SizedBox(
+                width: 30,
+              ),
+              Text(text),
+            ],
+          ),
+          onPressed: f,
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

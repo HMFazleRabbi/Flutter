@@ -64,3 +64,13 @@ class LastName extends ValueObject<String> {
 
   const LastName._(this.value);
 }
+
+class DOB extends ValueObject<String> {
+  final Either<ValueFailure<String>, String> value;
+  factory DOB(String input) {
+    assert(input != null);
+    return DOB._(validateDOB(input));
+  }
+
+  const DOB._(this.value);
+}
