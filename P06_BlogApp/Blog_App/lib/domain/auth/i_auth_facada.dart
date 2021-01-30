@@ -20,8 +20,5 @@ abstract class IAuthFacade
     @required Password password
   });
 
-    Future<Either<AuthFailure, Unit>>signinWithGoogle({
-    @required EmailAddress emailAddress,
-    @required Password password
-  });
+    Future<Either<AuthFailure, Unit>>signinWithGoogle();
 }

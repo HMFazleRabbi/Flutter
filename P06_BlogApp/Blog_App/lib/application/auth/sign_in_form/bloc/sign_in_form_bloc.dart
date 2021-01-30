@@ -21,6 +21,50 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   Stream<SignInFormState> mapEventToState(
     SignInFormEvent event,
   ) async* {
-  
+    yield* event.map(
+      emailChanged: (e) async* {
+        yield state.copyWith(
+            emailAddress: EmailAddress(e.emailStr),
+            authFailureOrSuccess: none());
+      },
+      passwordChanged: (e) async* {
+        yield state.copyWith(
+            password: Password(e.passwordStr), authFailureOrSuccess: none());
+      },
+
+      //Case: signin With EmailPressed
+      signinWithEmailPressed: (e) async* {
+        final isEmailValid = state.emailAddress.isValid();
+        final isPasswordValid = state.password.isValid();
+        Either<AuthFailure, Unit> failureOrSuccess;
+
+        if (isEmailValid && isPasswordValid) {
+          yield state.copyWith(
+              isSubmitting: true, 
+              authFailureOrSuccess: none(),
+          );
+
+          failureOrSuccess = await _authFacade.signinWithEmail(
+              emailAddress: state.emailAddress,
+              password: state.password,
+          );
+        }
+
+        yield state.copyWith(
+          isSubmitting: false,
+          showErrorManually: true, 
+          authFailureOrSuccess: optionOf(failureOrSuccess),
+        );
+      },//signinWithEmailPressed
+
+      //Case: signin With EmailPressed
+      signinWithGooglePressed: (e) async* {
+        yield state.copyWith(isSubmitting: true, authFailureOrSuccess: none());
+        final failureOrSuccess = await _authFacade.signinWithGoogle(
+            emailAddress: state.emailAddress, password: state.password);
+        yield state.copyWith(
+            isSubmitting: false, authFailureOrSuccess: some(failureOrSuccess));
+      },
+    );
   }
 }
