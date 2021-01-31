@@ -1,5 +1,5 @@
 
-import 'package:blog_app/presentation/assistant/injection.config.dart';
+import 'package:blog_app/injection.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 

@@ -1,5 +1,5 @@
 import 'package:blog_app/presentation/screens/SignUpPage.dart';
-import 'package:blog_app/presentation/screens/SignInPage.dart';
+import 'package:blog_app/presentation/signin/SignInPage.dart';
 import 'package:blog_app/presentation/screens/SignUpOptionsPage.dart';
 import 'package:flutter/material.dart';
 
