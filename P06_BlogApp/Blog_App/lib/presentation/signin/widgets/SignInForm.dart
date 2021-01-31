@@ -13,15 +13,25 @@ class SignInForm extends StatelessWidget {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
         _log.d("Listener has been triggered!");
+        state.authFailureOrSuccess.fold(
+          () => null,
+          (e) => e.fold(
+            (failure) {},
+            (r) => null,
+          ),
+        );
       },
       builder: (context, state) {
         return Form(
-          autovalidateMode: state.showErrorManually? AutovalidateMode.always:AutovalidateMode.disabled,
+          //autovalidate: state.showErrorManually,
+          autovalidateMode: state.showErrorManually
+              ? AutovalidateMode.onUserInteraction
+              : AutovalidateMode.disabled,
           child: Column(
             children: [
-              _emailWidget(),
+              const EmailAddressWidget(),
               const SizedBox(height: 10),
-              Password(),
+              PasswordWidget(),
               const SizedBox(height: 20),
               _signInButton(context),
               OrDivider(),
@@ -58,6 +68,8 @@ class SignInForm extends StatelessWidget {
         SocalIcon(
           iconSrc: "assets/icons/google-plus.svg",
           press: () {
+            BlocProvider.of<SignInFormBloc>(context)
+                .add(const SignInFormEvent.signinWithGooglePressed());
             _log.d("Google was pressed");
           },
         ),
@@ -96,6 +108,8 @@ class SignInForm extends StatelessWidget {
       child: RaisedButton(
         color: Colors.black,
         onPressed: () {
+          BlocProvider.of<SignInFormBloc>(context)
+              .add(const SignInFormEvent.signinWithEmailPressed());
           _log.i("Sign in with email was press in sign in page.");
         },
         child: const Text(
@@ -105,35 +119,10 @@ class SignInForm extends StatelessWidget {
       ),
     );
   }
-
-  Widget _emailWidget() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.grey[300],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: TextFormField(
-          style: const TextStyle(fontSize: 20.0, color: Colors.black),
-          keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            border: InputBorder.none,
-            hintText: "Enter Email Id",
-            prefixIcon: Icon(
-              Icons.email,
-              color: Colors.black,
-            ),
-          ),
-          autocorrect: false,
-        ),
-      ),
-    );
-  }
 }
 
 //////////////////////////////////////////////
-///Component Widget
+///Component Widget:
 //////////////////////////////////////////////
 class OrDivider extends StatelessWidget {
   @override
@@ -207,18 +196,63 @@ class SocalIcon extends StatelessWidget {
 }
 
 /////////////////////////////////////////////
-///Component Stateful Widget
+///Component Widget: Input Fields
 //////////////////////////////////////////////
-class Password extends StatefulWidget {
+class EmailAddressWidget extends StatelessWidget {
+  const EmailAddressWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.grey[300],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: TextFormField(
+          style: const TextStyle(fontSize: 20.0, color: Colors.black),
+          keyboardType: TextInputType.emailAddress,
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+            hintText: "Enter Email Id",
+            prefixIcon: Icon(
+              Icons.email,
+              color: Colors.black,
+            ),
+          ),
+          autocorrect: false,
+          onChanged: (value) => BlocProvider.of<SignInFormBloc>(context).add(
+            SignInFormEvent.emailChanged(value),
+          ),
+          validator: (_) => BlocProvider.of<SignInFormBloc>(context)
+              .state
+              .emailAddress
+              .value
+              .fold(
+                (l) => l.maybeMap(
+                    invalidEmail: (_) => "Invalid email address",
+                    orElse: () => null),
+                (r) => null,
+              ),
+        ),
+      ),
+    );
+  }
+}
+
+class PasswordWidget extends StatefulWidget {
   ///Description
   ///A state ful widget is created in order to
   ///toggle password. Input data will still use
   ///the bloc provider.
   @override
-  _PasswordState createState() => _PasswordState();
+  _PasswordWidgetState createState() => _PasswordWidgetState();
 }
 
-class _PasswordState extends State<Password> {
+class _PasswordWidgetState extends State<PasswordWidget> {
   //Variable
   bool hidePassword = true;
   @override
@@ -255,6 +289,19 @@ class _PasswordState extends State<Password> {
             border: InputBorder.none,
             hintText: "Password",
           ),
+          onChanged: (value) => BlocProvider.of<SignInFormBloc>(context).add(
+            SignInFormEvent.passwordChanged(value),
+          ),
+          validator: (_) => BlocProvider.of<SignInFormBloc>(context)
+              .state
+              .password
+              .value
+              .fold(
+                (l) => l.maybeMap(
+                    invalidPassword: (_) => "Invalid password.",
+                    orElse: () => null),
+                (r) => null,
+              ),
         ),
       ),
     );
