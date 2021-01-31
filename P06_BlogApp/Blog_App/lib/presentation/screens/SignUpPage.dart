@@ -37,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
               colors: [Colors.blue[300], Colors.green],
               begin: const FractionalOffset(0.0, 4.5),
               end: const FractionalOffset(0.0, 2),
-              stops: [0, 1],
+              stops: const [0, 1],
               tileMode: TileMode.repeated),
         ),
         child: Padding(
@@ -58,11 +58,11 @@ class _SignUpPageState extends State<SignUpPage> {
         SizedBox(height: 50),
         Text("New Account",
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 28.0,
               fontWeight: FontWeight.bold,
             )),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         GestureDetector(
           onTap: () async {
             log.i("Camera Testing");
@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         SizedBox(height: 20),
         _nameWidget(),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         _dateOfBirth(),
@@ -272,9 +272,9 @@ class _SignUpPageState extends State<SignUpPage> {
             hintText: "Enter Email Id",
           ),
           validator: (String value) {
-            Pattern pattern =
+            const String pattern =
                 r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-            RegExp regex = new RegExp(pattern);
+            final RegExp regex = RegExp(pattern);
             if (value.isEmpty) {
               return 'Email is required';
             } else if (!regex.hasMatch(value)) {

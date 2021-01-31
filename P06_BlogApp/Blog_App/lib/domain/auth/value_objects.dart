@@ -4,6 +4,7 @@ import 'package:blog_app/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 
 class EmailAddress extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
 
   factory EmailAddress(String input) {
@@ -15,6 +16,7 @@ class EmailAddress extends ValueObject<String> {
 }
 
 class Password extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
   factory Password(String input) {
     assert(input != null);
@@ -25,6 +27,7 @@ class Password extends ValueObject<String> {
 }
 
 class Username extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
   factory Username(String input) {
     assert(input != null);
@@ -35,6 +38,7 @@ class Username extends ValueObject<String> {
 }
 
 class CountryName extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
   factory CountryName(String input) {
     assert(input != null);
@@ -46,6 +50,7 @@ class CountryName extends ValueObject<String> {
 
 
 class FirstName extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
   factory FirstName(String input) {
     assert(input != null);
@@ -56,6 +61,7 @@ class FirstName extends ValueObject<String> {
 }
 
 class LastName extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
   factory LastName(String input) {
     assert(input != null);
@@ -66,6 +72,7 @@ class LastName extends ValueObject<String> {
 }
 
 class DOB extends ValueObject<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
   factory DOB(String input) {
     assert(input != null);

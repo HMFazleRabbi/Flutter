@@ -1,45 +1,46 @@
-import 'package:blog_app/infrastructure/services/ServerApiManager.dart';
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logger/logger.dart';
+
+//import 'package:blog_app/infrastructure/services/ServerApiManager.dart';
 
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
-  //Final Variable
+class _SignInPageState extends State<SignInPage> 
+{  
+  //Variable
   final _globalFormKey = GlobalKey<FormState>();
-  final _serverApiManager = ServerApiManager();
-  final log = Logger(
-    printer: PrettyPrinter(),
-  );
-
-  //Local State
+  final log = Logger(printer: PrettyPrinter());
   bool hidePassword = true;
+  //final _serverApiManager = ServerApiManager();//Server
 
   @override
   Widget build(BuildContext context) {
+    // ignore: non_constant_identifier_names
+    final Size SCREENSIZE = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: SCREENSIZE.height,
+        width: SCREENSIZE.width,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [Colors.blue[300], Colors.green],
               begin: const FractionalOffset(0.0, 4.5),
               end: const FractionalOffset(0.0, 2),
-              stops: [0, 1],
+              stops: const [0, 1],
               tileMode: TileMode.repeated),
         ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: _formWidget(),
           ),
         ),
@@ -47,75 +48,35 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
+//////////////////////////////////////////////
+  ///Form
+//////////////////////////////////////////////
   Widget _formWidget() {
-    Size size = MediaQuery.of(context).size;
+    // ignore: non_constant_identifier_names
+    final Size SCREENSIZE = MediaQuery.of(context).size;
     return Form(
       key: _globalFormKey,
       child: Column(children: [
-        SizedBox(height: 25.0),
-        Text(
-          "Food Blogger",
-          style: TextStyle(
-            fontSize: 38,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 2,
-          ),
-        ),
-        SizedBox(height: 45.0),
-        Text(
-          "Lets crunch on conversation!",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 2,
-          ),
-        ),
-        SizedBox(height: 50.0),
+        const SizedBox(height: 25.0),
+        _titleWidget(),
+        const SizedBox(height: 45.0),
+        _subtitleWidget(),
+        const SizedBox(height: 50.0),
         Image.asset(
           "assets/cookingpot.png",
-          height: size.height * 0.20,
+          height: SCREENSIZE.height * 0.20,
         ),
-        SizedBox(height: 20.0),
-        // Text("Sign In",
-        //     textAlign: TextAlign.center,
-        //     style: TextStyle(
-        //       fontSize: 28.0,
-        //       fontWeight: FontWeight.bold,
-        //     )),
-        // SizedBox(height: 40),
+        const SizedBox(height: 20.0),
         _emailWidget(),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _passwordWidget(),
-        SizedBox(height: 20),
-        signInButton(),
+        const SizedBox(height: 20),
+        _signInButton(),
         OrDivider(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SocalIcon(
-              iconSrc: "assets/icons/facebook.svg",
-              press: () {
-                log.d("facebook was pressed");
-                Navigator.of(context).pushNamed("/welcome");
-              },
-            ),
-            SocalIcon(
-              iconSrc: "assets/icons/twitter.svg",
-              press: () {
-                log.d("Twitter was pressed");
-              },
-            ),
-            SocalIcon(
-              iconSrc: "assets/icons/google-plus.svg",
-              press: () {
-                log.d("Google was pressed");
-              },
-            ),
-          ],
-        ),
-        SizedBox(height: 20),
+        _socialNetworkSignInButtons(),
+        const SizedBox(height: 20),
         signUpButton(),
-        SizedBox(height: 2),
+        const SizedBox(height: 2),
       ]),
     );
   }
@@ -123,31 +84,56 @@ class _SignInPageState extends State<SignInPage> {
 //////////////////////////////////////////////
   ///Form Input Fields
 //////////////////////////////////////////////
-Row signUpButton() {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Don't have an account? ",
-          ),
-          RaisedButton(
-            color: Colors.black,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-                side: BorderSide(color: Colors.black45)),
-            onPressed: () => Navigator.of(context).pushNamed("/signupoptions"),
-            child: Text(
-              "SignUp",
-              style: TextStyle(color: Colors.grey[100]),
-            ),
-          ),
-        ],
-      );
+  Widget _titleWidget() {
+    return const Text(
+      "Food Blogger",
+      style: TextStyle(
+        fontSize: 38,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 2,
+      ),
+    );
   }
 
-  Container signInButton() {
+  Widget _subtitleWidget() {
+    return const Text(
+      "Lets crunch on conversation!",
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 2,
+      ),
+    );
+  }
+
+  Widget signUpButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          "Don't have an account? ",
+        ),
+        RaisedButton(
+          color: Colors.black,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+              side: const BorderSide(color: Colors.black45)),
+          onPressed: () => Navigator.of(context).pushNamed("/signupoptions"),
+          child: Text(
+            "SignUp",
+            style: TextStyle(color: Colors.grey[100]),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _signInButton() {
+    // ignore: non_constant_identifier_names
+    final Size SCREENSIZE = MediaQuery.of(context).size;
+    // ignore: sized_box_for_whitespace
     return Container(
-      width: 250,
+      width: SCREENSIZE.width * 0.65,
       child: RaisedButton(
         color: Colors.black,
         onPressed: () {
@@ -160,7 +146,7 @@ Row signUpButton() {
           //   _serverApiManager.get("");
           // }
         },
-        child: Text(
+        child: const Text(
           "Sign in with email",
           style: TextStyle(fontSize: 20.0, color: Colors.white),
         ),
@@ -168,7 +154,7 @@ Row signUpButton() {
     );
   }
 
-  Container _emailWidget() {
+  Widget _emailWidget() {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
@@ -177,13 +163,12 @@ Row signUpButton() {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: TextFormField(
-          style: TextStyle(fontSize: 20.0, color: Colors.black),
+          style: const TextStyle(fontSize: 20.0, color: Colors.black),
           keyboardType: TextInputType.emailAddress,
-          obscureText: false,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: "Enter Email Id",
-            prefixIcon: const Icon(
+            prefixIcon: Icon(
               Icons.email,
               color: Colors.black,
             ),
@@ -214,7 +199,7 @@ Row signUpButton() {
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: TextFormField(
           obscuringCharacter: "*",
-          style: TextStyle(fontSize: 20.0, color: Colors.black),
+          style: const TextStyle(fontSize: 20.0, color: Colors.black),
           obscureText: hidePassword,
           decoration: InputDecoration(
             prefixIcon: const Icon(
@@ -245,6 +230,33 @@ Row signUpButton() {
       ),
     );
   }
+
+  Widget _socialNetworkSignInButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        SocalIcon(
+          iconSrc: "assets/icons/facebook.svg",
+          press: () {
+            log.d("facebook was pressed");
+            Navigator.of(context).pushNamed("/welcome");
+          },
+        ),
+        SocalIcon(
+          iconSrc: "assets/icons/twitter.svg",
+          press: () {
+            log.d("Twitter was pressed");
+          },
+        ),
+        SocalIcon(
+          iconSrc: "assets/icons/google-plus.svg",
+          press: () {
+            log.d("Google was pressed");
+          },
+        ),
+      ],
+    );
+  }
 } //_SignInPageState
 
 //////////////////////////////////////////////
@@ -253,15 +265,16 @@ Row signUpButton() {
 class OrDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final Size SCREENSIZE = MediaQuery.of(context).size;
+
     return Container(
-      margin: EdgeInsets.symmetric(vertical: size.height * 0.02),
-      width: size.width * 0.8,
+      margin: EdgeInsets.symmetric(vertical: SCREENSIZE.height * 0.02),
+      width: SCREENSIZE.width * 0.8,
       child: Row(
         children: <Widget>[
           buildDivider(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               "OR",
               style: TextStyle(
@@ -277,7 +290,7 @@ class OrDivider extends StatelessWidget {
   }
 
   Expanded buildDivider() {
-    return Expanded(
+    return const Expanded(
       child: Divider(
         color: Colors.black54,
         height: 1.5,
@@ -288,7 +301,7 @@ class OrDivider extends StatelessWidget {
 
 class SocalIcon extends StatelessWidget {
   final String iconSrc;
-  final Function press;
+  final Function() press;
   const SocalIcon({
     Key key,
     this.iconSrc,
@@ -300,8 +313,8 @@ class SocalIcon extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        padding: EdgeInsets.all(20),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           border: Border.all(
             width: 2,

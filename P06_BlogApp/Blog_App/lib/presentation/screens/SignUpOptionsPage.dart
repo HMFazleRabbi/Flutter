@@ -150,7 +150,7 @@ class _SignUpOptionsPageState extends State<SignUpOptionsPage>
   }
 
   Widget signUpOptionButton(String path, String text,
-      Animation<Offset> animationController, Function f) {
+      Animation<Offset> animationController, Function() f) {
     return SlideTransition(
       position: animationController,
       child: Container(
