@@ -7,11 +7,13 @@ import 'package:blog_app/domain/auth/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
 part 'sign_in_form_bloc.freezed.dart';
 
+@injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
 
@@ -60,8 +62,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       //Case: signin With EmailPressed
       signinWithGooglePressed: (e) async* {
         yield state.copyWith(isSubmitting: true, authFailureOrSuccess: none());
-        final failureOrSuccess = await _authFacade.signinWithGoogle(
-            emailAddress: state.emailAddress, password: state.password);
+        final failureOrSuccess = await _authFacade.signinWithGoogle();
         yield state.copyWith(
             isSubmitting: false, authFailureOrSuccess: some(failureOrSuccess));
       },

@@ -275,12 +275,13 @@ class _SignUpPageState extends State<SignUpPage> {
             Pattern pattern =
                 r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
             RegExp regex = new RegExp(pattern);
-            if (value.isEmpty)
+            if (value.isEmpty) {
               return 'Email is required';
-            else if (!regex.hasMatch(value))
+            } else if (!regex.hasMatch(value)) {
               return 'Enter Valid Email';
-            else
+            } else {
               return null;
+            }
           },
         ),
       ),

@@ -6,7 +6,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 
+
+@LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
@@ -23,22 +26,22 @@ class FirebaseAuthFacade implements IAuthFacade {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: _emailStr, password: _password);
-      return Right(unit);
+      return const Right(unit);
     } on FirebaseAuthException catch (e) {
-      if (e.code == "user-not-found" || e.code == "wrong-password")
+      if (e.code == "user-not-found" || e.code == "wrong-password") {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
-      else
+      } else {
         return left(const AuthFailure.serverError());
+      }
     }
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signinWithGoogle() async 
-  {
+  Future<Either<AuthFailure, Unit>> signinWithGoogle() async {
     try {
       final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
-        return left(AuthFailure.cancelledByUser());
+        return left(const AuthFailure.cancelledByUser());
       }
       final googleAuthentication = await googleUser.authentication;
       final authCredential = GoogleAuthProvider.credential(
@@ -46,24 +49,24 @@ class FirebaseAuthFacade implements IAuthFacade {
         accessToken: googleAuthentication.accessToken,
       );
       await _firebaseAuth.signInWithCredential(authCredential);
-      return Right(unit);
+      return const Right(unit);
       //Or
       //return _firebaseAuth.signInWithCredential(authCredential).then((r) => Right(unit));
 
     } on PlatformException catch (_) {
-      return Left(const AuthFailure.serverError());
+      return const Left(AuthFailure.serverError());
     }
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signupWithEmail(
-      {EmailAddress emailAddress,
-      Password password,
-      Username username,
-      FirstName firstName,
-      LastName lastName,
-      DOB dob,
-      CountryName countryName}) {
+  Future<Either<AuthFailure, Unit>> signupWithEmail({
+    EmailAddress emailAddress,
+    Password password,
+  }) async {
+    final _emailStr = emailAddress.getOrCrash();
+    final _password = password.getOrCrash();
+    _firebaseAuth.createUserWithEmailAndPassword(
+        email: _emailStr, password: _password);
     // TODO: implement signupWithEmail
     throw UnimplementedError();
   }

@@ -8,11 +8,6 @@ abstract class IAuthFacade
   Future<Either<AuthFailure, Unit>> signupWithEmail({
     @required EmailAddress emailAddress,
     @required Password password,
-    @required Username username,
-    @required FirstName firstName,
-    @required LastName lastName,
-    @required DOB dob,
-    @required CountryName countryName,
   });
 
   Future<Either<AuthFailure, Unit>>signinWithEmail({

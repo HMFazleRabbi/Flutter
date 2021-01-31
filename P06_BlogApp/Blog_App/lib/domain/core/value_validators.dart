@@ -35,6 +35,7 @@ Either<ValueFailure<String>, String> validateUsername(String input) {
   else
     return left(ValueFailure.invalidUsername(failedValue: input));
 }
+
 Either<ValueFailure<String>, String> validateCountryName(String input) {
   if (input != "")
     return right(input);
