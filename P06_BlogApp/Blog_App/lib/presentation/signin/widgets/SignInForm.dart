@@ -1,3 +1,4 @@
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,12 +13,22 @@ class SignInForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
-        _log.d("Listener has been triggered!");
         state.authFailureOrSuccess.fold(
           () => null,
           (e) => e.fold(
-            (failure) {},
-            (r) => null,
+            (failure) {
+              FlushbarHelper.createError(
+                message: failure.map(
+                    cancelledByUser: (_) => 'Cancelled by user',
+                    serverError: (_) => 'Server error',
+                    emailAlreadyInUse: (_) => 'Email already in use',
+                    invalidEmailAndPasswordCombination: (_) =>
+                        'Invalid Email and Password combination'),
+              ).show(context);
+            },
+            (r) {
+              //TODO: Navigate to home page.
+            },
           ),
         );
       },
@@ -34,6 +45,10 @@ class SignInForm extends StatelessWidget {
               PasswordWidget(),
               const SizedBox(height: 20),
               _signInButton(context),
+              if (state.isSubmitting) ...[
+                const SizedBox(height: 4),
+                const LinearProgressIndicator()
+              ],
               OrDivider(),
               _socialNetworkSignInButtons(context),
               const SizedBox(height: 20),

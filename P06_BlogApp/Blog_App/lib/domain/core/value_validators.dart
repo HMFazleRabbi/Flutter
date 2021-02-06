@@ -1,6 +1,10 @@
 import 'package:blog_app/domain/core/failures.dart';
 import 'package:dartz/dartz.dart';
+import 'package:kt_dart/kt.dart';
 
+//////////////////////////////////////
+///Authentication
+//////////////////////////////////////
 Either<ValueFailure<String>, String> validateEmailAddress(String value) {
   const String pattern =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -31,6 +35,9 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
   }
 }
 
+//////////////////////////////////////
+///Profile
+//////////////////////////////////////
 Either<ValueFailure<String>, String> validateUsername(String input) {
   // Morethan  3 Character Password with lowercase, uppercase letters and numbers
   // https://techearl.com/regular-expressions/regex-password-strength-validation
@@ -86,3 +93,44 @@ Either<ValueFailure<String>, String> validateDOB(String input) {
     return left(ValueFailure.invalidDOB(failedValue: input));
   }
 }
+
+//////////////////////////////////////
+///Blog
+//////////////////////////////////////
+Either<ValueFailure<String>, String> validateMaxStringLength (String input, int maxLength) {
+  
+  if (input.length <= maxLength ) {
+    return right(input);
+  } else {
+    return left(ValueFailure.exceedingLength(failedValue: input, max: maxLength));
+  }
+}
+
+Either<ValueFailure<String>, String> validateStringNotEmpty (String input, int maxLength) {
+  
+  if (input.isNotEmpty ) {
+    return right(input);
+  } else {
+    return left(ValueFailure.empty(failedValue: input));
+  }
+}
+
+Either<ValueFailure<String>, String> validateSingleLine (String input) {
+  
+  if (input.contains('\n') ) {
+    return Left(ValueFailure.multiline(failedValue: input));
+  } else {
+    return Right(input);
+  }
+}
+
+
+Either<ValueFailure<KtList>, KtList> validateMaxListLength (KtList input, int maxLength) {
+  
+  if (input.size <= maxLength ) {
+    return right(input);
+  } else {
+    return left(ValueFailure.listTooLong(failedValue: input, max: maxLength));
+  }
+}
+

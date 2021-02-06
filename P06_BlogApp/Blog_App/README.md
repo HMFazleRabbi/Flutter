@@ -19,3 +19,8 @@ samples, guidance on mobile development, and a full API reference.
 ## Freeze command
 
 flutter pub run build_runner watch
+
+
+## CMD for Android emulator
+cd C:\Users\h-m-fazle.rabbi\AppData\Local\Android\Sdk\emulator
+emulator @Pixel_3a_API_30_x86   -dns-server 8.8.8.8

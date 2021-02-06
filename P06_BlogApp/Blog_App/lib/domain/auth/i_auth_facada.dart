@@ -1,10 +1,12 @@
 import 'package:blog_app/domain/auth/auth_failure.dart';
+import 'package:blog_app/domain/auth/user.dart';
 import 'package:blog_app/domain/auth/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class IAuthFacade 
 {
+  Future<Option<User>>getSignedInUser();
   Future<Either<AuthFailure, Unit>> signupWithEmail({
     @required EmailAddress emailAddress,
     @required Password password,
@@ -16,4 +18,7 @@ abstract class IAuthFacade
   });
 
     Future<Either<AuthFailure, Unit>>signinWithGoogle();
+
+    Future<void> signOut();
+
 }
