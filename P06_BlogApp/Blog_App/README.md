@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 ## Freeze command
 
 flutter pub run build_runner watch
-
+flutter pub run build_runner clean
 
 ## CMD for Android emulator
 cd C:\Users\h-m-fazle.rabbi\AppData\Local\Android\Sdk\emulator

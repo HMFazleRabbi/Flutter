@@ -16,6 +16,10 @@ abstract class ValueObject<T> {
     return value.fold((l) => throw UnexpectedValueError(l), (r) => r);
   }
 
+  Either<ValueFailure<dynamic>, Unit>get failureOrUnit{
+    return value.fold((l) => Left(l), (_) => const Right(unit));
+  }
+
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;

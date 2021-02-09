@@ -106,7 +106,7 @@ Either<ValueFailure<String>, String> validateMaxStringLength (String input, int 
   }
 }
 
-Either<ValueFailure<String>, String> validateStringNotEmpty (String input, int maxLength) {
+Either<ValueFailure<String>, String> validateStringNotEmpty (String input) {
   
   if (input.isNotEmpty ) {
     return right(input);
@@ -125,7 +125,7 @@ Either<ValueFailure<String>, String> validateSingleLine (String input) {
 }
 
 
-Either<ValueFailure<KtList>, KtList> validateMaxListLength (KtList input, int maxLength) {
+Either<ValueFailure<KtList<T>>, KtList<T>> validateMaxListLength<T> (KtList<T> input, int maxLength) {
   
   if (input.size <= maxLength ) {
     return right(input);
@@ -133,4 +133,5 @@ Either<ValueFailure<KtList>, KtList> validateMaxListLength (KtList input, int ma
     return left(ValueFailure.listTooLong(failedValue: input, max: maxLength));
   }
 }
+
 
