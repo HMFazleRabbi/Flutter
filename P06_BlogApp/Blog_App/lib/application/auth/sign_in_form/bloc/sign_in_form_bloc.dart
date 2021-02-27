@@ -18,7 +18,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final IAuthFacade _authFacade;
 
   SignInFormBloc(this._authFacade) : super(SignInFormState.initial());
-  
+
   //SignInFormState get initialState => SignInFormState.initial();
 
   @override
@@ -28,12 +28,15 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     yield* event.map(
       emailChanged: (e) async* {
         yield state.copyWith(
-            emailAddress: EmailAddress(e.emailStr),
-            authFailureOrSuccess: none());
+          emailAddress: EmailAddress(e.emailStr),
+          authFailureOrSuccess: none(),
+        );
       },
       passwordChanged: (e) async* {
         yield state.copyWith(
-            password: Password(e.passwordStr), authFailureOrSuccess: none());
+          password: Password(e.passwordStr),
+          authFailureOrSuccess: none(),
+        );
       },
 
       //Case: signin With EmailPressed
@@ -44,22 +47,22 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
 
         if (isEmailValid && isPasswordValid) {
           yield state.copyWith(
-              isSubmitting: true, 
-              authFailureOrSuccess: none(),
+            isSubmitting: true,
+            authFailureOrSuccess: none(),
           );
 
           failureOrSuccess = await _authFacade.signinWithEmail(
-              emailAddress: state.emailAddress,
-              password: state.password,
+            emailAddress: state.emailAddress,
+            password: state.password,
           );
         }
 
         yield state.copyWith(
           isSubmitting: false,
-          showErrorManually: true, 
+          showErrorManually: true,
           authFailureOrSuccess: optionOf(failureOrSuccess),
         );
-      },//signinWithEmailPressed
+      }, //signinWithEmailPressed
 
       //Case: signin With EmailPressed
       signinWithGooglePressed: (e) async* {

@@ -8,8 +8,8 @@ abstract class IBlogRepository {
   //Read
   Stream <Either<BlogFailure, KtList<Blog>>> watchAll();
   Stream <Either<BlogFailure, KtList<Blog>>> watchUncompleted();
-  Stream <Either<BlogFailure, Unit>> create(Blog blog);
-  Stream <Either<BlogFailure, Unit>> update(Blog blog);
-  Stream <Either<BlogFailure, Unit>> delete(Blog blog);
+  Future <Either<BlogFailure, Unit>> create(Blog blog);
+  Future <Either<BlogFailure, Unit>> update(Blog blog);
+  Future <Either<BlogFailure, Unit>> delete(Blog blog);
 
 }

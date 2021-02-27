@@ -20,6 +20,7 @@ samples, guidance on mobile development, and a full API reference.
 
 flutter pub run build_runner watch
 flutter pub run build_runner clean
+flutter pub run build_runner watch --delete-conflicting-outputs
 
 ## CMD for Android emulator
 cd C:\Users\h-m-fazle.rabbi\AppData\Local\Android\Sdk\emulator

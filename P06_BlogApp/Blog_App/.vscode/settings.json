@@ -1,5 +1,6 @@
 {
-    "git.ignoreLimitWarning": true
-
+  "git.ignoreLimitWarning": true,
+  "files.exclude": {
+    "lib\\domain\\auth\\user.freezed.dart": true
+  }
 }
-
